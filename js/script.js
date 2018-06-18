@@ -80,11 +80,6 @@
 	    element: document.querySelector('#board .column-container')
 	};
 
-	addColumn: function(column) {
-	  this.element.appendChild(column.element);
-	  initSortable(column.id);
-	}
-
 	function initSortable(id) {
 	  var el = document.getElementById(id);
 	  var sortable = Sortable.create(el, {
