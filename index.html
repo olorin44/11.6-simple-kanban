@@ -9,7 +9,7 @@
 <body>
 	<div id="board" class="board">
     <h1>Kanban board</h1>
-    <button class="create-column">Add a column</button>
+    <button class="btn create-column tooltip">New column<span class="tooltip-text">Click to create a new column</span></button>
     <div class="column-container"></div>
 	</div>
 
@@ -17,14 +17,14 @@
     <div class="column">
       <h2 class="column-title">{{ name }}</h2>
       <ul id={{ id }} class="column-card-list"></ul>
-       <button class="btn-delete">x</button>
-      <button class="add-card">Add a card</button>
+       <button class="btn btn-delete tooltip">x<span class="tooltip-text">Click to remove column</span></button>
+      <button class="btn add-card tooltip">New card<span class="tooltip-text">Click to add a new card</span></button>
     </div>
   </script>
   <script id="card-template" type="x-tmpl-mustache">
     <div class="card">
       <p class="card-description">{{ description }}</p>
-      <button class="btn-delete">x</button>
+      <button class="btn btn-delete tooltip">x<span class="tooltip-text">Click to remove card</span></button>
     </div
   </script>
 
