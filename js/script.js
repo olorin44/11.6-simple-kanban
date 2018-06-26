@@ -1,6 +1,16 @@
 'use strict'; 
 (function(){
 
+	var idTable = [];
+
+	var inputCheck = function (inputChars) {
+		return (inputChars && inputChars.trim().length);
+	};
+
+	var wrongInput = function() {
+		alert('The name field was empty!');
+	};
+
 	document.addEventListener('DOMContentLoaded', function() {
 	    function randomString() {
 	    var chars = '0123456789abcdefghiklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXTZ';
@@ -8,7 +18,9 @@
 	    for (var i = 0; i < 10; i++) {
 	        str += chars[Math.floor(Math.random() * chars.length)];
 	    }
-	    return str;
+	    // return str;
+	    if (str === idTable.str) {randomString()///
+	    } else return idTable.push(str);///
 	}
 
 	function generateTemplate(name, data, basicElement) {
@@ -90,19 +102,23 @@
 
 	document.querySelector('#board .create-column').addEventListener('click', function() {
 	    var name = prompt('Enter a column name');
+	    if (inputCheck(name)) {
 	    var column = new Column(name);
-	    board.addColumn(column);
+	    board.addColumn(column);	
+	} else wrongInput();
 	});
 
 	// CREATING COLUMNS
 	var todoColumn = new Column('To do');
 	var doingColumn = new Column('Doing');
 	var doneColumn = new Column('Done');
+	var archiveColumn = new Column('Archive');
 
 	// ADDING COLUMNS TO THE BOARD
 	board.addColumn(todoColumn);
 	board.addColumn(doingColumn);
 	board.addColumn(doneColumn);
+	board.addColumn(archiveColumn);
 
 	// CREATING CARDS
 	var card1 = new Card('New task');
