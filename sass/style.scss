@@ -39,6 +39,14 @@ body {
 	}
 }
 
+.btn-archive {
+	border-radius: 30%;
+
+	&:hover {
+		color: #48dbfb;
+	}
+}
+
 .create-column {
 	font-size: 1.2em;
 	margin-bottom: 20px;
@@ -107,9 +115,11 @@ body {
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
-	padding: 5px 0;
+	padding: 5px;
 	position: absolute;
+	left: 25px;
 	text-align: center;
+	top: 25px;
 	width: 120px;
 	visibility: hidden;
 	z-index: 1;
