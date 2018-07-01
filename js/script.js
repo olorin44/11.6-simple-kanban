@@ -18,9 +18,14 @@
 	    for (var i = 0; i < 10; i++) {
 	        str += chars[Math.floor(Math.random() * chars.length)];
 	    }
-	    // return str;
-	    if (str === idTable.str) {randomString()///
-	    } else return idTable.push(str);///
+
+	    if (idTable.includes(str)) {
+	    	randomString();
+
+	    } else {
+	    	idTable.push(str);
+	    	return str;
+	    }
 	}
 
 	function generateTemplate(name, data, basicElement) {
@@ -37,9 +42,9 @@
 		var self = this;
 
 		this.id = randomString();
+		var columnId = this.id;
 		this.name = name;
 		this.element = generateTemplate('column-template', { name: this.name, id: this.id });
-	
 
 		this.element.querySelector('.column').addEventListener('click', function (event) {
 		  if (event.target.classList.contains('btn-delete')) {
@@ -47,7 +52,7 @@
 		  }
 
 		  if (event.target.classList.contains('add-card')) {
-		  	self.addCard(new Card(prompt("Enter the name of the card")));
+		  	self.addCard(new Card(columnId, prompt("Enter the name of the card")));
 		  }
 		});
 	}
@@ -61,10 +66,10 @@
 	    }
 	};
 
-	function Card(description) {
+	function Card(description, columnId) {
 		var self = this;
 
-		this.id = randomString();
+		this.id = randomString(columnId);
 		this.description = description;
 		this.element = generateTemplate('card-template', { description: this.description }, 'li');
 
@@ -74,6 +79,11 @@
 			if (event.target.classList.contains('btn-delete')) {
 				self.removeCard();
 			}
+/////////////////////////////////////////
+			if (event.target.classList.contains('btn-archive')) {
+				self.cardArchive();
+			}
+			////////////////////////////
 		});
 	}
 		
@@ -82,6 +92,27 @@
 			this.element.parentNode.removeChild(this.element);
 	    }
 	}
+	/////////////////////////////////////////////
+	Card.prototype = {
+		cardArchive: function(card, id) {
+			var karta = this.element.parentNode
+			var kolumna = karta.parentNode
+			var kolumnaArchId = archiveColumn.id
+			
+			console.log('ID kolumny Archive   ' + kolumnaArchId)
+			console.log('karta  ' + karta)
+			console.log('archiveColumn  ' + archiveColumn)
+			console.log('karta + parent node  ' + karta.parentNode)
+			console.log('kolumna  ' + kolumna)
+			
+		}
+	}
+	/////////////////////////////////////////////
+	var searchColumn = function (column) {
+		this.element.appendChild(column.element)
+
+	}
+	//////////////////////////////////////////////
 
 	var board = {
 	    name: 'Kanban Board',
@@ -102,10 +133,14 @@
 
 	document.querySelector('#board .create-column').addEventListener('click', function() {
 	    var name = prompt('Enter a column name');
+
 	    if (inputCheck(name)) {
 	    var column = new Column(name);
-	    board.addColumn(column);	
-	} else wrongInput();
+	    board.addColumn(column);
+
+		} else {
+		wrongInput();
+		}
 	});
 
 	// CREATING COLUMNS
