@@ -1,39 +1,113 @@
-body { background-color: #bdc3c7; font-family: 'Open Sans', sans-serif; }
+body {
+  background-color: #bdc3c7;
+  font-family: 'Open Sans', sans-serif;
+}
 
-.board { color: #ffeaa7; text-align: center; }
+.board {
+  color: #ffeaa7;
+  text-align: center;
+}
 
-.btn { background-color: #6c5ce7; color: #dfe6e9; }
+.btn {
+  background-color: #6c5ce7;
+  color: #dfe6e9;
+}
 
-.btn:hover { box-shadow: 2px 2px 2px #ffeaa7; }
+.btn:hover {
+  box-shadow: 2px 2px 2px #ffeaa7;
+}
 
-.add-card { border-radius: 45%; font-size: 1.1em; margin-bottom: 5px; padding: 2%; }
+.add-card {
+  border-radius: 45%;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  padding: 2%;
+}
 
-.add-card:active { color: #74b9ff; }
+.add-card:active {
+  color: #74b9ff;
+}
 
-.btn-delete { border-radius: 30%; font-weight: bold; }
+.btn-delete {
+  border-radius: 30%;
+  font-weight: bold;
+}
 
-.btn-delete:hover { color: #d63031; }
+.btn-delete:hover {
+  color: #d63031;
+}
 
-.create-column { font-size: 1.2em; margin-bottom: 20px; }
+.create-column {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
 
-.create-column:active { box-shadow: 5px 5px 5px #6c5ce7; }
+.create-column:active {
+  box-shadow: 5px 5px 5px #6c5ce7;
+}
 
-.column { background-color: #0984e3; border: 2px solid #2f3542; border-radius: 5px; float: left; width: 400px; }
+.column {
+  background-color: #0984e3;
+  border: 2px solid #2f3542;
+  border-radius: 5px;
+  float: left;
+  width: 400px;
+}
 
-.column ul { list-style-type: none; }
+.column ul {
+  list-style-type: none;
+}
 
-.column:hover .column-title { text-shadow: 1px 1px 2px black, 0 0 20px blue, 0 0 5px darkblue; }
+.column:hover .column-title {
+  text-shadow: 1px 1px 2px black, 0 0 20px blue, 0 0 5px darkblue;
+}
 
-.column-card-list { min-height: 50px; }
+.column-card-list {
+  min-height: 50px;
+}
 
-.card { background-color: #74b9ff; border: 2px solid #6c5ce7; border-radius: 10px; color: #2d3436; font-family: 'Indie Flower', cursive; font-weight: bold; font-size: 1.4em; margin: 0 10% 2% 1%; padding: 5px; text-align: left; }
+.card {
+  background-color: #74b9ff;
+  border: 2px solid #6c5ce7;
+  border-radius: 10px;
+  color: #2d3436;
+  font-family: 'Indie Flower', cursive;
+  font-weight: bold;
+  font-size: 1.4em;
+  margin: 0 10% 2% 1%;
+  padding: 5px;
+  text-align: left;
+}
 
-.card:hover { box-shadow: 5px 5px 5px #ffeaa7; }
+.card:hover {
+  box-shadow: 5px 5px 5px #ffeaa7;
+}
 
-.card:active { box-shadow: 10px 10px 10px #6c5ce7; }
+.card:active {
+  box-shadow: 10px 10px 10px #6c5ce7;
+}
 
-.tooltip { border-bottom: 1px dotted black; display: inline-block; position: relative; }
+.tooltip {
+  border-bottom: 1px dotted black;
+  display: inline-block;
+  position: relative;
+}
 
-.tooltip .tooltip-text { background-color: rgba(0, 0, 255, 0.5); border-radius: 6px; color: #fff; font-size: 1.2em; font-weight: bold; padding: 5px 0; position: absolute; text-align: center; width: 120px; visibility: hidden; z-index: 1; }
+.tooltip .tooltip-text {
+  background-color: rgba(0, 0, 255, 0.5);
+  border-radius: 6px;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+  padding: 5px 0;
+  position: absolute;
+  text-align: center;
+  width: 120px;
+  visibility: hidden;
+  z-index: 1;
+}
 
-.tooltip:hover .tooltip-text { visibility: visible; }
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+}
+/*# sourceMappingURL=style.css.map */
