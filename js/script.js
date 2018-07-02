@@ -18,9 +18,14 @@
 	    for (var i = 0; i < 10; i++) {
 	        str += chars[Math.floor(Math.random() * chars.length)];
 	    }
-	    // return str;
-	    if (str === idTable.str) {randomString()///
-	    } else return idTable.push(str);///
+
+	    if (idTable.includes(str)) {
+	    	randomString();
+
+	    } else {
+	    	idTable.push(str);
+	    	return str;
+	    }
 	}
 
 	function generateTemplate(name, data, basicElement) {
@@ -33,13 +38,12 @@
 		return element;
 	}
 
-	function Column(name) {
+	function Column(name, column) {
 		var self = this;
 
 		this.id = randomString();
 		this.name = name;
 		this.element = generateTemplate('column-template', { name: this.name, id: this.id });
-	
 
 		this.element.querySelector('.column').addEventListener('click', function (event) {
 		  if (event.target.classList.contains('btn-delete')) {
@@ -63,7 +67,6 @@
 
 	function Card(description) {
 		var self = this;
-
 		this.id = randomString();
 		this.description = description;
 		this.element = generateTemplate('card-template', { description: this.description }, 'li');
@@ -74,20 +77,43 @@
 			if (event.target.classList.contains('btn-delete')) {
 				self.removeCard();
 			}
+ 			////////////////////////////
+			if (event.target.classList.contains('btn-archive')) {
+				self.archiveCard();
+			}
+			if (event.target.classList.contains('btn-restore')) {
+				self.restoreCard();
+			}
+			///////////////////////////////
 		});
 	}
 		
 	Card.prototype = {
 		removeCard: function() {
 			this.element.parentNode.removeChild(this.element);
-	    }
+	    },
+	/////////////////////////////////////////////
+		archiveCard: function() {
+			var karta = this.element.parentNode;
+			var kolumna = karta.parentNode;
+			var kolumnaArchId = archiveColumn.id;
+
+			document.getElementById(archiveColumn.id).appendChild(this.element);
+		},
+	//////////////////////////////////////////////
+		restoreCard: function(column) {
+			console.log(this.element)
+			console.log(idTable)
+		}
 	}
+	//////////////////////////////////////////////
 
 	var board = {
 	    name: 'Kanban Board',
 	    addColumn: function(column) {
 	      this.element.appendChild(column.element);
 	      initSortable(column.id);
+	      console.log('testowy- column ID:  ' + column.name + ' ' + column.id); ////////////////
 	    },
 	    element: document.querySelector('#board .column-container')
 	};
@@ -102,10 +128,14 @@
 
 	document.querySelector('#board .create-column').addEventListener('click', function() {
 	    var name = prompt('Enter a column name');
+
 	    if (inputCheck(name)) {
 	    var column = new Column(name);
-	    board.addColumn(column);	
-	} else wrongInput();
+	    board.addColumn(column);
+
+		} else {
+		wrongInput();
+		}
 	});
 
 	// CREATING COLUMNS

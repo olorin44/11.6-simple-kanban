@@ -11,6 +11,8 @@ body {
 //buttons: 
 
 .btn {
+	border-radius: 30%;
+	font-weight: bold;
 	background-color: #6c5ce7;
 	color: #dfe6e9;
 
@@ -30,16 +32,20 @@ body {
 	}
 }
 
-.btn-delete {
-	border-radius: 30%;
-	font-weight: bold;
+.btn-archive:hover {
+	color: #48dbfb;
+}
 
-	&:hover {
-		color: #d63031;
-	}
+.btn-delete:hover {
+	color: #d63031;
+}
+
+.btn-restore:hover {
+	color: #fbc531;
 }
 
 .create-column {
+	border-radius: 10%;
 	font-size: 1.2em;
 	margin-bottom: 20px;
 
@@ -107,9 +113,11 @@ body {
 	color: #fff;
 	font-size: 1.2em;
 	font-weight: bold;
-	padding: 5px 0;
+	padding: 5px;
 	position: absolute;
+	left: 25px;
 	text-align: center;
+	top: 25px;
 	width: 120px;
 	visibility: hidden;
 	z-index: 1;
