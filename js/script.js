@@ -38,11 +38,10 @@
 		return element;
 	}
 
-	function Column(name) {
+	function Column(name, column) {
 		var self = this;
 
 		this.id = randomString();
-		var columnId = this.id;
 		this.name = name;
 		this.element = generateTemplate('column-template', { name: this.name, id: this.id });
 
@@ -52,7 +51,7 @@
 		  }
 
 		  if (event.target.classList.contains('add-card')) {
-		  	self.addCard(new Card(columnId, prompt("Enter the name of the card")));
+		  	self.addCard(new Card(prompt("Enter the name of the card")));
 		  }
 		});
 	}
@@ -66,10 +65,9 @@
 	    }
 	};
 
-	function Card(description, columnId) {
+	function Card(description) {
 		var self = this;
-
-		this.id = randomString(columnId);
+		this.id = randomString();
 		this.description = description;
 		this.element = generateTemplate('card-template', { description: this.description }, 'li');
 
@@ -79,38 +77,34 @@
 			if (event.target.classList.contains('btn-delete')) {
 				self.removeCard();
 			}
-/////////////////////////////////////////
+ 			////////////////////////////
 			if (event.target.classList.contains('btn-archive')) {
-				self.cardArchive();
+				self.archiveCard();
 			}
-			////////////////////////////
+			if (event.target.classList.contains('btn-restore')) {
+				self.restoreCard();
+			}
+			///////////////////////////////
 		});
 	}
 		
 	Card.prototype = {
 		removeCard: function() {
 			this.element.parentNode.removeChild(this.element);
-	    }
-	}
+	    },
 	/////////////////////////////////////////////
-	Card.prototype = {
-		cardArchive: function(card, id) {
-			var karta = this.element.parentNode
-			var kolumna = karta.parentNode
-			var kolumnaArchId = archiveColumn.id
-			
-			console.log('ID kolumny Archive   ' + kolumnaArchId)
-			console.log('karta  ' + karta)
-			console.log('archiveColumn  ' + archiveColumn)
-			console.log('karta + parent node  ' + karta.parentNode)
-			console.log('kolumna  ' + kolumna)
-			
-		}
-	}
-	/////////////////////////////////////////////
-	var searchColumn = function (column) {
-		this.element.appendChild(column.element)
+		archiveCard: function() {
+			var karta = this.element.parentNode;
+			var kolumna = karta.parentNode;
+			var kolumnaArchId = archiveColumn.id;
 
+			document.getElementById(archiveColumn.id).appendChild(this.element);
+		},
+	//////////////////////////////////////////////
+		restoreCard: function(column) {
+			console.log(this.element)
+			console.log(idTable)
+		}
 	}
 	//////////////////////////////////////////////
 
@@ -119,6 +113,7 @@
 	    addColumn: function(column) {
 	      this.element.appendChild(column.element);
 	      initSortable(column.id);
+	      console.log('testowy- column ID:  ' + column.name + ' ' + column.id); ////////////////
 	    },
 	    element: document.querySelector('#board .column-container')
 	};
