@@ -30,6 +30,14 @@ body {
   color: #74b9ff;
 }
 
+.add-text:hover {
+  color: #d35400;
+}
+
+.btn-hide {
+  visibility: hidden;
+}
+
 .btn-archive:hover {
   color: #48dbfb;
 }
