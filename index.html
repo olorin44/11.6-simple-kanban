@@ -22,9 +22,10 @@
     </div>
   </script>
   <script id="card-template" type="x-tmpl-mustache">
-    <div class="card" id={{ id }}> <!-- dodałem ID -->
+    <div class="card" id={{ id }}>
       <p class="card-description">{{ description }}</p>
-      <p class="card-content" contenteditable="true">...</p>
+      <button class="btn add-text tooltip">T<span class="tooltip-text">Click write text</span></button>
+      <p class="card-content"></p>
       <button class="btn btn-delete tooltip">x<span class="tooltip-text">Click to remove card</span></button>
       <button class="btn btn-archive tooltip">&dArr;<span class="tooltip-text">Click to send a card to archive</span></button>
       <button class="btn btn-restore tooltip">&uArr;<span class="tooltip-text">Click to restore a card from archive</span></button>

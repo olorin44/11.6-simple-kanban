@@ -1,8 +1,8 @@
 'use strict'; 
 (function(){
 
-	var idTable = [];
-	var pairTable = [];
+	var idTable = []; // idTable contains all id assigned for cards and columns
+	var pairTable = []; //pairTable contains id in order 'column.id:card.id' for columns cards created in those columns
 
 	var inputCheck = function (inputChars) {
 		return (inputChars && inputChars.trim().length);
@@ -54,6 +54,7 @@
 		  if (event.target.classList.contains('add-card')) {
 		  	self.addCard(new Card(prompt("Enter the name of the card")));
 		  }
+
 		});
 	}
 
@@ -62,6 +63,7 @@
 	    	primaryColumnId = this.element.querySelector('ul').id
 	    	this.element.querySelector('ul').appendChild(card.element);
 	    	pairTable.push(primaryColumnId, card.id);
+	    	this.element.querySelector('.btn-restore').classList.add('btn-hide');
 	    },
 	    removeColumn: function() {
 	    	this.element.parentNode.removeChild(this.element);
@@ -88,6 +90,14 @@
 			if (event.target.classList.contains('btn-restore')) {
 				self.restoreCard();
 			}
+
+			if (event.target.classList.contains('add-text')) {
+				var textNote = prompt('Please enter your text');
+				if (inputCheck(textNote)) {
+					self.element.querySelector('.card-content').innerHTML = textNote;
+					} else wrongInput();
+			}
+
 		});
 	}
 		
@@ -98,6 +108,8 @@
 
 		archiveCard: function() {
 			document.getElementById(archiveColumn.id).appendChild(this.element);
+			this.element.querySelector('.btn-archive').classList.add('btn-hide');
+			this.element.querySelector('.btn-restore').classList.remove('btn-hide');
 		},
 
 		restoreCard: function(card) {
@@ -111,6 +123,8 @@
 			}
 
 			document.getElementById(primaryColumn).appendChild(this.element);
+			this.element.querySelector('.btn-restore').classList.add('btn-hide');
+			this.element.querySelector('.btn-archive').classList.remove('btn-hide');
 
 		}
 	};
@@ -163,9 +177,6 @@
 	// ADDING CARDS TO COLUMNS
 	todoColumn.addCard(card1);
 	doingColumn.addCard(card2);
-
-
-
 
 });
 
