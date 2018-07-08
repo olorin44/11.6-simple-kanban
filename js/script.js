@@ -2,6 +2,7 @@
 (function(){
 
 	var idTable = [];
+	var pairTable = [];
 
 	var inputCheck = function (inputChars) {
 		return (inputChars && inputChars.trim().length);
@@ -20,7 +21,7 @@
 	    }
 
 	    if (idTable.includes(str)) {
-	    	randomString();
+	    	return randomString();
 
 	    } else {
 	    	idTable.push(str);
@@ -57,8 +58,10 @@
 	}
 
 	Column.prototype = {
-	    addCard: function(card) {
+	    addCard: function(card, primaryColumnId) {
+	    	primaryColumnId = this.element.querySelector('ul').id
 	    	this.element.querySelector('ul').appendChild(card.element);
+	    	pairTable.push(primaryColumnId, card.id);
 	    },
 	    removeColumn: function() {
 	    	this.element.parentNode.removeChild(this.element);
@@ -69,7 +72,7 @@
 		var self = this;
 		this.id = randomString();
 		this.description = description;
-		this.element = generateTemplate('card-template', { description: this.description }, 'li');
+		this.element = generateTemplate('card-template', { description: this.description, id: this.id }, 'li');
 
 		this.element.querySelector('.card').addEventListener('click', function (event) {
 			event.stopPropagation();
@@ -77,14 +80,14 @@
 			if (event.target.classList.contains('btn-delete')) {
 				self.removeCard();
 			}
- 			////////////////////////////
+
 			if (event.target.classList.contains('btn-archive')) {
 				self.archiveCard();
 			}
+
 			if (event.target.classList.contains('btn-restore')) {
 				self.restoreCard();
 			}
-			///////////////////////////////
 		});
 	}
 		
@@ -92,28 +95,31 @@
 		removeCard: function() {
 			this.element.parentNode.removeChild(this.element);
 	    },
-	/////////////////////////////////////////////
-		archiveCard: function() {
-			var karta = this.element.parentNode;
-			var kolumna = karta.parentNode;
-			var kolumnaArchId = archiveColumn.id;
 
+		archiveCard: function() {
 			document.getElementById(archiveColumn.id).appendChild(this.element);
 		},
-	//////////////////////////////////////////////
-		restoreCard: function(column) {
-			console.log(this.element)
-			console.log(idTable)
+
+		restoreCard: function(card) {
+			var self = this;
+			var cardId = this.element.querySelector('.card').id;
+
+			for (var i = 0; i < pairTable.length; i++) {
+				if (pairTable[i].includes(cardId)) {
+					var primaryColumn = pairTable[i-1]
+				}
+			}
+
+			document.getElementById(primaryColumn).appendChild(this.element);
+
 		}
-	}
-	//////////////////////////////////////////////
+	};
 
 	var board = {
 	    name: 'Kanban Board',
 	    addColumn: function(column) {
 	      this.element.appendChild(column.element);
 	      initSortable(column.id);
-	      console.log('testowy- column ID:  ' + column.name + ' ' + column.id); ////////////////
 	    },
 	    element: document.querySelector('#board .column-container')
 	};
