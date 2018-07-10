@@ -45,6 +45,10 @@
 		this.id = randomString();
 		this.name = name;
 		this.element = generateTemplate('column-template', { name: this.name, id: this.id });
+		if (name == 'Archive') {
+			self.element.querySelector('.add-card').classList.add('btn-hide');
+			
+		}
 
 		this.element.querySelector('.column').addEventListener('click', function (event) {
 		  if (event.target.classList.contains('btn-delete')) {
@@ -63,7 +67,11 @@
 	    	primaryColumnId = this.element.querySelector('ul').id
 	    	this.element.querySelector('ul').appendChild(card.element);
 	    	pairTable.push(primaryColumnId, card.id);
-	    	this.element.querySelector('.btn-restore').classList.add('btn-hide');
+	    	var buttonsRestore = this.element.querySelectorAll('.btn-restore');
+
+	    	for (var btnNumber = 0; buttonsRestore.length; btnNumber++) {
+	    		buttonsRestore[btnNumber].classList.add('btn-hide');
+	    	};
 	    },
 	    removeColumn: function() {
 	    	this.element.parentNode.removeChild(this.element);
@@ -116,9 +124,9 @@
 			var self = this;
 			var cardId = this.element.querySelector('.card').id;
 
-			for (var i = 0; i < pairTable.length; i++) {
-				if (pairTable[i].includes(cardId)) {
-					var primaryColumn = pairTable[i-1]
+			for (var idCount = 0; i < pairTable.length; idCount++) {
+				if (pairTable[idCount].includes(cardId)) {
+					var primaryColumn = pairTable[idCount-1]
 				}
 			}
 

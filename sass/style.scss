@@ -1,3 +1,7 @@
+* {
+	box-sizing: border-box;
+}
+
 body {
 	background-color: #bdc3c7;
 	font-family: 'Open Sans', sans-serif;
@@ -8,7 +12,7 @@ body {
 	text-align: center;
 }
 
-//buttons: 
+// buttons: 
 
 .btn {
 	border-radius: 30%;
@@ -62,7 +66,7 @@ body {
 	}
 }
 
-//
+// columns:
 
 .column {
 	background-color: #0984e3;
@@ -86,6 +90,8 @@ body {
 	min-height: 50px;
 }
 
+// cards:
+
 .card {
 	background-color: #74b9ff;
 	border: 2px solid #6c5ce7;
@@ -107,7 +113,7 @@ body {
 	}
 }
 
-//tooltips:
+// tooltips:
 
 .tooltip {
 	border-bottom: 1px dotted black;
