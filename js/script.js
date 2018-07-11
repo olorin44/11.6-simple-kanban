@@ -69,7 +69,7 @@
 	    	pairTable.push(primaryColumnId, card.id);
 	    	var buttonsRestore = this.element.querySelectorAll('.btn-restore');
 
-	    	for (var btnNumber = 0; buttonsRestore.length; btnNumber++) {
+	    	for (var btnNumber = 0; btnNumber < buttonsRestore.length; btnNumber++) {
 	    		buttonsRestore[btnNumber].classList.add('btn-hide');
 	    	};
 	    },
@@ -124,7 +124,7 @@
 			var self = this;
 			var cardId = this.element.querySelector('.card').id;
 
-			for (var idCount = 0; i < pairTable.length; idCount++) {
+			for (var idCount = 0; idCount < pairTable.length; idCount++) {
 				if (pairTable[idCount].includes(cardId)) {
 					var primaryColumn = pairTable[idCount-1]
 				}
