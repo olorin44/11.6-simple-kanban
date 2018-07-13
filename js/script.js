@@ -2,7 +2,7 @@
 (function(){
 
 	var idTable = []; // idTable contains all id assigned for cards and columns
-	var pairTable = []; //pairTable contains id in order 'column.id:card.id' for columns cards created in those columns
+	var pairTable = []; //pairTable contains id in order 'column.id:card.id' for cards created in those columns
 
 	var inputCheck = function (inputChars) {
 		return (inputChars && inputChars.trim().length);
@@ -47,7 +47,6 @@
 		this.element = generateTemplate('column-template', { name: this.name, id: this.id });
 		if (name == 'Archive') {
 			self.element.querySelector('.add-card').classList.add('btn-hide');
-			
 		}
 
 		this.element.querySelector('.column').addEventListener('click', function (event) {
@@ -107,6 +106,10 @@
 			}
 
 		});
+
+		this.element.querySelector('.card').addEventListener('drop', function (event) {
+			self.moveCard();
+		});
 	}
 		
 	Card.prototype = {
@@ -129,11 +132,21 @@
 					var primaryColumn = pairTable[idCount-1]
 				}
 			}
-
+			
 			document.getElementById(primaryColumn).appendChild(this.element);
 			this.element.querySelector('.btn-restore').classList.add('btn-hide');
 			this.element.querySelector('.btn-archive').classList.remove('btn-hide');
+		},
 
+		moveCard: function() {
+			if (this.element.parentNode.id == archiveColumn.id) {
+				this.element.querySelector('.btn-archive').classList.add('btn-hide');
+				this.element.querySelector('.btn-restore').classList.remove('btn-hide');
+
+			} else {
+				this.element.querySelector('.btn-restore').classList.add('btn-hide');
+				this.element.querySelector('.btn-archive').classList.remove('btn-hide');
+			}
 		}
 	};
 
@@ -147,11 +160,11 @@
 	};
 
 	function initSortable(id) {
-	  var el = document.getElementById(id);
-	  var sortable = Sortable.create(el, {
-	    group: 'kanban',
-	    sort: true
-	  });
+		var el = document.getElementById(id);
+		var sortable = Sortable.create(el, {
+			group: 'kanban',
+			sort: true
+		});
 	}
 
 	document.querySelector('#board .create-column').addEventListener('click', function() {
