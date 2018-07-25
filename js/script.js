@@ -101,7 +101,7 @@
 			if (event.target.classList.contains('add-text')) {
 				var textNote = prompt('Please enter your text');
 				if (inputCheck(textNote)) {
-					self.element.querySelector('.card-content').innerHTML = textNote;
+					self.element.querySelector('.card-content').innerHTML += '<li>' + textNote + '</li>';
 					} else wrongInput();
 			}
 
